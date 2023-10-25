@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lms_product/Pages/HomeScreen.dart';
+import 'package:lms_product/Pages/login.dart';
 import 'package:lms_product/Pages/splash_screen.dart';
 
 
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/home': (context) => HomeScreen(),
+        '/login':(context) => LoginWidget(),
       },
     );
   }

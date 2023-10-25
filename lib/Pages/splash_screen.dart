@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lms_product/Pages/HomeScreen.dart';
+import 'package:lms_product/Pages/login.dart';
 
 class SplashScreen extends StatelessWidget {
   SplashScreen({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class SplashScreen extends StatelessWidget {
             WidgetsBinding.instance!.addPostFrameCallback((_) {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (context) => HomeScreen(),
+                  builder: (context) => LoginWidget(),
                 ),
               );
             });
@@ -26,7 +27,7 @@ class SplashScreen extends StatelessWidget {
               child: Container(
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/Programming Star Png-01 (1).png'),
+                      image: AssetImage('assets/logo_app.png'),
                       fit: BoxFit.contain
                       ),
                   ),
