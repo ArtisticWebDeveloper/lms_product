@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lms_product/Pages/HomeScreen.dart';
 import 'package:lms_product/Pages/login.dart';
 
 class SplashScreen extends StatelessWidget {
