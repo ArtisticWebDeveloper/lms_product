@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lms_product/Pages/HomeScreen.dart';
 import 'package:lms_product/Pages/login.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -15,7 +16,8 @@ class SplashScreen extends StatelessWidget {
             WidgetsBinding.instance!.addPostFrameCallback((_) {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (context) => LoginWidget(),
+                  builder: (context) => HomeScreen(),
+                  // LoginWidget(),
                 ),
               );
             });

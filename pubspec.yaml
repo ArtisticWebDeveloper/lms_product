@@ -63,6 +63,8 @@ flutter:
   assets:
     - assets/logo_app.png
     - assets/Programming Star Png-01 (1).png
+    - assets/book.avif
+    - assets/Programming Star.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

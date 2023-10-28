@@ -1,140 +1,128 @@
-    import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 
-class HomeScreen  extends StatelessWidget {
-  //const HomeScreen ({super.key});
+// class HomeScreen extends StatefulWidget {
+//   const HomeScreen({super.key});
+
+//   @override
+//   State<HomeScreen> createState() => _HomeScreenState();
+// }
+
+// class _HomeScreenState extends State<HomeScreen> {
+//   int _selectedIndex = 0;
+//    static const TextStyle optionStyle =
+//       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+//       static const List<Widget> _widgetOptions = <Widget>[
+//     Text(
+//       'Index 0: Home',
+//       style: optionStyle,
+//     ),
+//     Text(
+//       'Index 1: Business',
+//       style: optionStyle,
+//     ),
+//     Text(
+//       'Index 2: School',
+//       style: optionStyle,
+//     ),
+//   ];
+
+//   void _onItemTapped(int index) {
+//     setState(() {
+//       _selectedIndex = index;
+//     });
+//   }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: Text(' Programming Star ', style: TextStyle(color: Colors.black)),
+//       iconTheme: IconThemeData(color: Colors.black),
+//       ),
+//       body: Center(
+//         child: _widgetOptions[_selectedIndex]
+//       ),
+//       drawer: Drawer(
+//         child:ListView(
+//           padding: EdgeInsets.zero,
+//           children: <Widget>[
+//             DrawerHeader(
+//               decoration: BoxDecoration(
+//                 color: Colors.blue
+//                 ),
+//               child: Text('Drawer'),
+//             ),
+//             ListTile(
+//               selected: _selectedIndex ==0,
+
+//               title: Text('Home'),
+//               onTap: () {
+//                 _onItemTapped(0);
+//                 Navigator.pop(context);
+//               }
+//             ),
+//           ]
+//           ) 
+//         ),
+//     );
+//   }
+// }
+
+import 'package:flutter/material.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      initialIndex: 1,
-      length: 4,
-       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(70),
-          child: AppBar(
-            elevation: 0,
-            title: Padding(
-              padding: const EdgeInsets.only(top: 15),
-              child: Center(
-                child: Text(
-                  'Programming Star',
-                style: TextStyle(fontSize: 21, color: Color.fromARGB(255, 231, 17, 202)),
-                ),
+    return Scaffold(
+      drawer: Drawer(
+        child: ListView()
+      ),
+      appBar: AppBar(
+        title: Text('Programming Star', style: TextStyle(color: Colors.black)),
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        automaticallyImplyLeading: false,
+      ),
+      backgroundColor: Color(0xFFF5F6CE),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          Container(
+            height: MediaQuery.of(context).size.height / 3,
+            width: double.infinity,
+            padding: EdgeInsets.all(20),
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              image: DecorationImage(
+                image: AssetImage("assets/Programming Star.png"),
+                fit: BoxFit.cover,
+                
               ),
-            ),
-            actions: [
-              // Padding(padding: EdgeInsets.only(top:12, right:15),
-              // child: Icon(
-              //   Icons.search,
-              //   size: 28,
-              //   color: Colors.black,
-              // ),
-              // ),
-              PopupMenuButton(
-                padding: EdgeInsets.symmetric(vertical: 20),
-                iconSize: 28,
-                itemBuilder: (context) => [
-                  PopupMenuItem(
-                    value: 1,
-                    child: Text("New Group", style: TextStyle(fontSize: 14),
-                    ),
-                  ),
-                  PopupMenuItem(
-                    value: 2,
-                    child: Text("Linked devices", style: TextStyle(fontSize: 14),
-                    ),
-                  ),
-                  PopupMenuItem(
-                    value: 3,
-                    child: Text("Labels", style: TextStyle(fontSize: 14),
-                    ),
-                  ),
-                  PopupMenuItem(
-                    value: 4,
-                    child: Text("Starred message", style: TextStyle(fontSize: 14),
-                    ),
-                  ),
-                  PopupMenuItem(
-                    value: 5,
-                    child: Text("Settings", style: TextStyle(fontSize: 14),
-                    ),
-                  )
-                ],
-              )
-            ]
+              ),
           ),
-        ),
-        body: Column(
-          children: [
-            // Container(
-            //   color: Color(0xFF075E55),
-            //   child: TabBar(
-            //     isScrollable: true,
-            //     indicatorColor: Colors.white,
-            //     indicatorWeight:4 ,
-            //     labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            //     tabs: [
-            //       Container(
-            //         width: 25,
-            //         child: Tab(
-            //           icon: Icon(Icons.camera_alt),
-            //         ),
-            //       ),
-            //       Container(
-            //         width: 90,
-            //         child: Tab(
-            //           child:Row(children: [
-            //             Text("CHATS"),
-            //             SizedBox(width: 8,),
-            //             Container(
-            //               alignment: Alignment.center,
-            //               // padding: EdgeInsets.all(5),
-            //               height: 22, 
-            //               width: 22,
-            //               decoration: BoxDecoration(
-            //                 borderRadius: BorderRadius.circular(20),
-            //                 color: Colors.white,
-            //               ),
-            //               child: Text(
-            //                 "10",
-            //                 style: TextStyle(
-            //                   color: Color(0xFF075E55),
-            //                   fontSize: 13,
-            //                 ),
-            //               ),
-            //             )
-            //           ],)
-            //           ),
-            //       ),
-            //       Container(
-            //         width: 85,
-            //         child: Tab(child: Text("STATUS"),),
-            //       ),
-            //       Container(
-            //         width: 85,
-            //         child: Tab(child: Text("CALLS"),),
-            //       )
-            //     ],
-            //   ),
-            // ),
-            Flexible( flex: 1,
-              child: TabBarView(
-                children: [
-                  // tab 1
-                  Container(color: Colors.black,),
-                  
-                  // tab 2
-                  Container(color: Colors.black,),
-                  // tab 3
-                  Container(color: Colors.black,),
-                  // tab 4
-                  Container(color: Colors.black,),
-                ],
-                )
-                )
-          ]
-        ),
-       ),
-       );
+          Padding(padding: EdgeInsets.symmetric(horizontal: 24)),
+          Card(
+            margin: EdgeInsets.only(top: 8, bottom: 16),
+            elevation: 4,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            child: ListTile(
+              leading: CircleAvatar(backgroundColor: Colors.blueGrey[900], radius: 20, 
+              child: Image.asset(
+                "assets/book.avif")) ,
+                title: Text('Coding for Beginners'),  
+                subtitle: Text('Learn to code in a fun way!'),
+                trailing: IconButton(icon: Icon(Icons.arrow_forward_ios, size: 20, color: Colors.grey
+                ) , onPressed: () {}),
+              )
+            )
+        ])
+      )
+    );
   }
 }
