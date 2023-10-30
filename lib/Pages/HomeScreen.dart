@@ -60,13 +60,15 @@
 //               }
 //             ),
 //           ]
-//           ) 
+//           )
 //         ),
 //     );
 //   }
 // }
 
 import 'package:flutter/material.dart';
+import 'package:lms_product/constants/constants.dart';
+import 'package:lms_product/utils/bottom_menu.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -76,53 +78,224 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
+    Constants constants = Constants();
+    var courseList = constants.list;
+    var advCourseList = constants.newArrivals;
     return Scaffold(
-      drawer: Drawer(
-        child: ListView()
-      ),
-      appBar: AppBar(
-        title: Text('Programming Star', style: TextStyle(color: Colors.black)),
-        iconTheme: IconThemeData(
-          color: Colors.black,
-        ),
-        automaticallyImplyLeading: false,
-      ),
-      backgroundColor: Color(0xFFF5F6CE),
-      body: SingleChildScrollView(
-        child: Column(children: [
-          Container(
-            height: MediaQuery.of(context).size.height / 3,
-            width: double.infinity,
-            padding: EdgeInsets.all(20),
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              image: DecorationImage(
-                image: AssetImage("assets/Programming Star.png"),
-                fit: BoxFit.cover,
-                
-              ),
-              ),
+        appBar: AppBar(
+          title: Text('Programming Star',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Poppins')),
+          iconTheme: IconThemeData(
+            color: Colors.black,
           ),
-          Padding(padding: EdgeInsets.symmetric(horizontal: 24)),
-          Card(
-            margin: EdgeInsets.only(top: 8, bottom: 16),
-            elevation: 4,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            child: ListTile(
-              leading: CircleAvatar(backgroundColor: Colors.blueGrey[900], radius: 20, 
-              child: Image.asset(
-                "assets/book.avif")) ,
-                title: Text('Coding for Beginners'),  
-                subtitle: Text('Learn to code in a fun way!'),
-                trailing: IconButton(icon: Icon(Icons.arrow_forward_ios, size: 20, color: Colors.grey
-                ) , onPressed: () {}),
-              )
-            )
-        ])
-      )
-    );
+          leading: IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          ),
+          automaticallyImplyLeading: false,
+        ),
+        drawerScrimColor: Colors.black,
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Center(
+            child: Column(children: [
+              Container(
+                  height: MediaQuery.of(context).size.width * 0.5,
+                  child: ListView.builder(
+                      itemCount: courseList.length,
+                      itemBuilder: (context, index) {
+                        return getProductCard(context, courseList[index]);
+                      })),
+              Container(
+                alignment: Alignment.topLeft,
+                padding: EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Advance Level Learning",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w100),
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: Text(
+                            'More',
+                            style: TextStyle(
+                              color: Colors.blue[800],
+                              fontFamily: 'Poppins',
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Container(
+                  height: 190,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: advCourseList.length,
+                      itemBuilder: (context, index) {
+                        return getAdvanceCourse(context, advCourseList[index]);
+                      }),
+                ),
+              ),
+              Container(
+                alignment: Alignment.topLeft,
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Biginner Level Learning",
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.normal),
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: Text(
+                            'More',
+                            style: TextStyle(
+                              color: Colors.blue[800],
+                              fontFamily: 'Poppins',
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+
+                ),
+              ),
+               Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  height: 190,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: advCourseList.length,
+                      itemBuilder: (context, index) {
+                        return getAdvanceCourse(context, advCourseList[index]);
+                      }),
+                ),
+              ),
+
+            ]
+            ),
+          ),
+        ),
+        bottomNavigationBar: BottomMenu(selectedIndex: _currentIndex));
   }
+}
+
+getProductCard(BuildContext context, course) {
+  return InkWell(
+    onTap: () {
+      print(course.name);
+      // Navigator.push(
+      //     context,
+      // MaterialPageRoute(
+      // builder: (BuildContext context) => ProductDetailsView(product)));
+    },
+    child: Card(
+      color: Colors.white,
+      shadowColor: Color.fromARGB(255, 129, 123, 123),
+      elevation: 1.0,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          height: 170,
+          width: MediaQuery.of(context).size.width * 0.4,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            image: DecorationImage(
+              image: AssetImage(
+                '${course.image}',
+              ),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                padding: EdgeInsets.all(5.0),
+                child: Text(
+                  "${course.rating}",
+                  style: TextStyle(fontSize: 14, color: Colors.white),
+                ),
+              ),
+            ],
+          ),
+      ),
+    ),
+    )
+  );
+}
+
+getAdvanceCourse(BuildContext context, Advcourse) {
+  return InkWell(
+    onTap: () {
+      print(Advcourse.name);
+      // Navigator.push(
+      //     context,
+      // MaterialPageRoute(
+      // builder: (BuildContext context) => ProductDetailsView(product)));
+    },
+    child: Card(
+      color: Colors.white,
+      shadowColor: Color.fromARGB(255, 129, 123, 123),
+      elevation: 5.0,
+      child: Column(
+        children: [
+          Container(
+          height: MediaQuery.of(context).size.width * 0.4,
+            width: MediaQuery.of(context).size.width * 0.45,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            image: DecorationImage(
+              image: AssetImage('${Advcourse.image}'),
+              fit: BoxFit.cover)
+          ),
+          child: Container(
+            alignment: Alignment.bottomRight,
+            child: Text('${Advcourse.rating}',style: TextStyle(fontSize: 14, color: Colors.white)
+            ),
+            )
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text('${Advcourse.name}', style: TextStyle(color: Colors.black,fontSize: 12),),
+            ],
+          ),
+        ],
+      ),
+    ),
+  );
+  
 }
